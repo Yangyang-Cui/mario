@@ -42,6 +42,12 @@ function createBackgroundLayer(backgrounds, sprites) {
     };
 }
 
+function createSpriteLayer(sprite, pos) {
+    return function drawSpriteLayer(context) {
+        sprite.draw('idle', context, pos.x, pos.y)
+    };
+}
+
 Promise.all([
         loadMarioSprites(),
         loadBackgroundSprites(),
@@ -57,9 +63,11 @@ Promise.all([
             y: 64
         };
 
+        const spriteLayer = createSpriteLayer(marioSprite, pos);
+        comp.layers.push(spriteLayer);
+
         function update() {
             comp.draw(context);
-            marioSprite.draw('idle', context, pos.x, pos.y);
             pos.x += 2;
             pos.y += 2;
             requestAnimationFrame(update);
