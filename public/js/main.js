@@ -15,7 +15,7 @@ function loadMarioSprites() {
     return loadImage('/img/characters.gif')
         .then(image => {
             const sprites = new SpriteSheet(image, 16, 16);
-            sprites.define('idle', 17, 3);
+            sprites.define('idle', 17, 3, 16, 16);
             return sprites;
         });
 }
