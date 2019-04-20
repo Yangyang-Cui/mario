@@ -47,13 +47,17 @@ Promise.all([
         mario.pos.set(64, 180);
         mario.vel.set(2, -10);
 
+        mario.update = function updateMario() {
+            this.pos.x += this.vel.x;
+            this.pos.y += this.vel.y;
+        }
+
         const spriteLayer = createSpriteLayer(marioSprite, mario.pos);
         comp.layers.push(spriteLayer);
 
         function update() {
             comp.draw(context);
-            mario.pos.x += mario.vel.x;
-            mario.pos.y += mario.vel.y;
+            mario.update();
             mario.vel.y += gravity;
             requestAnimationFrame(update);
         }
