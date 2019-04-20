@@ -21,16 +21,21 @@ Promise.all([
         loadLevel('1-1'),
     ])
     .then(([marioSprite, sprites, level]) => {
+        const backgroundBuffer = document.createElement('canvas');
 
+        backgroundBuffer.width = 256;
+        backgroundBuffer.height = 240;
+
+        level.backgrounds.forEach(background => {
+            drawBackground(background, backgroundBuffer.getContext('2d'), sprites);
+        });
         const pos = {
             x: 64,
             y: 64
         };
 
         function update() {
-            level.backgrounds.forEach(background => {
-                drawBackground(background, context, sprites);
-            });
+            context.drawImage(backgroundBuffer, 0, 0);
             marioSprite.draw('idle', context, pos.x, pos.y);
             pos.x += 2;
             pos.y += 2;
