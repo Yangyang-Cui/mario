@@ -6,6 +6,7 @@ import { loadBackgroundSprites } from './sprites.js';
 import { createBackgroundLayer, createSpriteLayer } from './layers.js';
 
 window.addEventListener('keydown', event => {
+    event.preventDefault();
     console.log(event);
 })
 const canvas = document.getElementById('screen');
