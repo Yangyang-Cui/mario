@@ -4,6 +4,7 @@ import { loadLevel } from './loader.js';
 import { createMario } from './entities.js';
 import { createCollisionLayer } from './layers.js';
 import { setupKeyboard } from './input.js';
+import { setupMouseControl } from './debug.js';
 
 const canvas = document.getElementById('screen');
 const context = canvas.getContext('2d');
@@ -23,14 +24,7 @@ Promise.all([
         const input = setupKeyboard(mario);
         input.listenTo(window);
 
-        ['mousedown', 'mousemove'].forEach(eventName => {
-            canvas.addEventListener(eventName, event => {
-                if (event.buttons === 1) {
-                    mario.vel.set(0, 0);
-                    mario.pos.set(event.offsetX, event.offsetY);
-                }
-            });
-        });
+        setupMouseControl(canvas, mario, camera);
 
         const timer = new Timer(1 / 60);
         timer.update = function update(deltaTime) {
