@@ -1,6 +1,6 @@
 import SpriteSheet from './SpriteSheet.js';
 import { loadImage } from './loader.js';
-export function loadMarioSprites() {
+export function loadMarioSprite() {
     return loadImage('/img/characters.gif')
         .then(image => {
             const sprites = new SpriteSheet(image, 16, 16);
