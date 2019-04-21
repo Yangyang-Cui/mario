@@ -72,12 +72,12 @@ function loadSpriteSheet(name) {
         });
 }
 
-
 export function loadLevel(name) {
-    return Promise.all([
-            loadJSON(`/levels/${name}.json`),
-            loadSpriteSheet('overworld'),
-        ])
+    return loadJSON(`/levels/${name}.json`)
+        .then(levelSpec => Promise.all([
+            levelSpec,
+            loadSpriteSheet(levelSpec.spriteSheet),
+        ]))
         .then(([levelSpec, backgroundSprites]) => {
             const level = new Level();
 
