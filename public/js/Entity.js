@@ -9,10 +9,12 @@ export class Trait {
         console.warn('Unhandled update call in Trait');
     }
 }
+
 export default class Entity {
     constructor() {
         this.pos = new Vec2(0, 0);
         this.vel = new Vec2(0, 0);
+        this.size = new Vec2(0, 0);
 
         this.traits = [];
     }
