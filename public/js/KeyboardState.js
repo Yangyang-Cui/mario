@@ -35,7 +35,7 @@ export default class KeyboardState {
 
     listenTo(window) {
         ['keydown', 'keyup'].forEach(eventName => {
-            window.addEventListener(event => {
+            window.addEventListener(eventName, event => {
                 this.handleEvent(event);
             });
         });
