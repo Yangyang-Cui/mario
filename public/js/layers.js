@@ -4,7 +4,7 @@ function drawBackground(background, context, sprites) {
             for (let y = y1; y < y2; ++y) {
                 sprites.drawTile(background.tile, context, x, y);
             }
-        };
+        }
     });
 }
 
