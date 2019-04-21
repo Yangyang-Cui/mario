@@ -45,7 +45,6 @@ export function loadLevel(name) {
             const spriteLayer = createSpriteLayer(level.entities);
             level.comp.layers.push(spriteLayer);
 
-            console.table(level.tiles.grid);
             return level;
         });
 }
