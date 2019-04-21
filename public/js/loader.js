@@ -31,6 +31,12 @@ function createTiles(level, backgrounds) {
             if (range.length === 4) {
                 const [xStart, xLen, yStart, yLen] = range;
                 applyRange(background, xStart, xLen, yStart, yLen);
+            } else if (range.length === 3) {
+                const [xStart, xLen, yStart] = range;
+                applyRange(background, xStart, xLen, yStart, 1);
+            } else if (range.length === 2) {
+                const [xStart, yStart] = range;
+                applyRange(background, xStart, 1, yStart, 1);
             }
         });
     });
