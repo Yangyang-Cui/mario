@@ -1,26 +1,14 @@
 import { Trait } from '../Entity.js';
 
-export default class Jump extends Trait {
+export default class Go extends Trait {
     constructor() {
-        super('jump');
+        super('go');
 
-        this.duration = 0.5;
-        this.velocity = 200;
-        this.engageTime = 0;
-    }
-
-    start() {
-        this.engageTime = this.duration;
-    }
-
-    cancel() {
-        this.engageTime = 0;
+        this.dir = 0;
+        this.speed = 6000;
     }
 
     update(entity, deltaTime) {
-        if (this.engageTime > 0) {
-            entity.vel.y = -this.velocity;
-            this.engageTime -= deltaTime;
-        }
+        entity.vel.x = this.speed * this.dir * deltaTime;
     }
 }
