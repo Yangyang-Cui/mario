@@ -20,7 +20,7 @@ export function createBackgroundLayer(level, sprites) {
     }
 
     return function drawBackgroundLayer(context, camera) {
-        const drawWidth = resolver.toIndex(camera.pos.x);
+        const drawWidth = resolver.toIndex(camera.size.x);
         const drawFrom = resolver.toIndex(camera.pos.x);
         const drawTo = drawFrom + drawWidth;
         redraw(drawFrom, drawTo);
