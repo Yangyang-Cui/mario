@@ -1,6 +1,5 @@
 export function createBackgroundLayer(level, sprites) {
     const buffer = document.createElement('canvas');
-
     buffer.width = 256;
     buffer.height = 240;
 
@@ -20,5 +19,26 @@ export function createSpriteLayer(entities) {
         entities.forEach(entity => {
             entity.draw(context);
         });
+    };
+}
+
+export function createCollisionLayer(level) {
+    const resolvedTiles = [];
+
+    const tileResolver = level.tileCollider.tiles;
+    const tileSize = tileResolver.tileSize;
+
+    const getByIndexOriginal = tileResolver.getByIndex;
+    tileResolver.getByIndex = function getByIndexFake(x, y) {
+        resolvedTiles.push({ x, y });
+        return getByIndexOriginal.call(tileResolver, x, y);
+    }
+
+    return function drawCollision(context) {
+        resolvedTiles.forEach(({ x, y }) => {
+            console.log('would draw', x, y);
+        });
+
+        resolvedTiles.length = 0;
     };
 }
